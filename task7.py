@@ -1,5 +1,3 @@
-from threading import Thread
-
 import pytest
 import time
 from selenium import webdriver

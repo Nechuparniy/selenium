@@ -15,6 +15,7 @@ def driver(request):
     request.addfinalizer(wd.quit)
     return wd
 
+
 def test_example(driver):
     driver.get("http://www.google.com/")
     # driver.find_element_by_name("q").send_keys("webdriver")
@@ -28,6 +29,3 @@ def test_lesson2_task3(driver):
     driver.find_element_by_name('password').send_keys('admin')
     driver.find_element_by_name('login').click()
     WebDriverWait(driver, 10).until(EC.title_is('My Store'))
-
-
-# def test_lesson3(driver):
