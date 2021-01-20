@@ -1,3 +1,4 @@
+import time
 import pytest
 from selenium import webdriver
 
@@ -37,3 +38,19 @@ def test_task9(driver):
         zones.append(driver.find_element_by_css_selector("table.dataTable tr td:nth-child(3)").text)
         check_alphabetical_order(zones)
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries")
+
+    driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones")
+    rows = driver.find_elements_by_css_selector("tr.row")
+    countries_list = []
+    for i in rows:
+        countries_list.append(i.find_element_by_css_selector("td a:not([title=Edit])").text)
+    for y in countries_list:
+        time.sleep(1)
+        zones = []
+        link = driver.find_element_by_xpath(f"//a[contains(text(), '{y}')]")
+        link.click()
+        elements = driver.find_elements_by_xpath("//select[contains(@name, 'zone_code')]//option[@selected]")
+        for element in elements:
+            zones.append(element.text)
+        check_alphabetical_order(zones)
+        driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones")
