@@ -23,8 +23,7 @@ def assertion(local_driver):
     campaign_price_color = Color.from_string(campaign_price.value_of_css_property('color'))
     assert campaign_price_color.green == campaign_price_color.blue == 0
     assert campaign_price.get_attribute("tagName") == 'STRONG'
-    assert campaign_price.size['height'] > regular_price.size['height']
-    assert campaign_price.size['width'] > regular_price.size['width']
+    assert campaign_price.value_of_css_property('font-size') > regular_price.value_of_css_property('font-size')
 
 
 def test_task10(drivers):
