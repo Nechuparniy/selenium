@@ -1,11 +1,6 @@
 import pytest
-import time
 from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 import faker
-from selenium.webdriver.common.action_chains import ActionChains
 import random
 
 
@@ -42,4 +37,3 @@ def test_task7(driver):
     driver.find_element_by_name("password").send_keys("password")
     driver.find_element_by_name("login").click()
     driver.find_element_by_css_selector("#box-account .list-vertical li:last-child a").click()
-    print()
