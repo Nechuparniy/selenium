@@ -14,7 +14,7 @@ def driver(request):
     return wd
 
 
-def test_task7(driver):
+def test_task11(driver):
     email = "istockinfotest+"+str(fake.pyint())+"@gmail.com"
     driver.get("http://localhost/litecart")
     driver.find_element_by_css_selector("form[name=login_form] tbody tr:last-child").click()
