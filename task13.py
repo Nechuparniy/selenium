@@ -29,9 +29,9 @@ def test_task12(driver):
         if check_exists_by_name(driver, "options[Size]"):
             driver.find_element_by_name("options[Size]").click()
             driver.find_element_by_css_selector("option[value=Small]").click()
-        quantity = int(driver.find_element_by_css_selector("span.quantity").text)
+        quantity = str(int(driver.find_element_by_css_selector("span.quantity").text)+1)
         driver.find_element_by_name("add_cart_product").click()
-        wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "span.quantity"), str(quantity+1)))
+        wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "span.quantity"), quantity))
         driver.find_element_by_id("logotype-wrapper").click()
     driver.find_element_by_id("cart").click()
     items_count = len(driver.find_elements_by_css_selector("li.item"))
