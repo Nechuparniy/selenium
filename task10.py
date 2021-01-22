@@ -2,6 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.support.color import Color
+import re
 
 
 @pytest.fixture
@@ -15,6 +16,10 @@ def drivers(request):
     return wd
 
 
+def int_from_string(string):
+    return int(re.search(r'\d+', string).group(0))
+
+
 def assertion(local_driver):
     regular_price = local_driver.find_element_by_css_selector("s.regular-price")
     regular_price_color = Color.from_string(regular_price.value_of_css_property('color'))
@@ -23,7 +28,8 @@ def assertion(local_driver):
     campaign_price_color = Color.from_string(campaign_price.value_of_css_property('color'))
     assert campaign_price_color.green == campaign_price_color.blue == 0
     assert campaign_price.get_attribute("tagName") == 'STRONG'
-    assert campaign_price.value_of_css_property('font-size') > regular_price.value_of_css_property('font-size')
+    assert int_from_string(campaign_price.value_of_css_property('font-size')) \
+           > int_from_string(regular_price.value_of_css_property('font-size'))
 
 
 def test_task10(drivers):
