@@ -1,10 +1,9 @@
 import pytest
 from selenium import webdriver
 import faker
-import random
 import time
-from selenium.webdriver.common.action_chains import ActionChains
 import os
+from datetime import datetime
 
 
 fake = faker.Faker()
@@ -28,18 +27,15 @@ def test_task12(driver):
     driver.find_element_by_xpath("//a[contains(text(), 'Add New Product')]").click()
     time.sleep(2)
     driver.find_element_by_xpath("//input[@name='status' and @value='1']").click()
-    # driver.find_element_by_css_selector("[name=status][value=1]").click()
+
     name = fake.word()
     driver.find_element_by_name("name[en]").send_keys(name)
     driver.find_element_by_name("code").send_keys(fake.pyint())
     driver.find_element_by_name("quantity").clear()
     driver.find_element_by_name("quantity").send_keys(fake.pyint())
-    # time.sleep(1)
-    # calendar_from = driver.find_element_by_name("date_valid_from")
-    # ActionChains(driver).move_to_element_with_offset(calendar_from, 170, 16).click().move_by_offset(0, -100)\
-    #     .click().perform()
-
     driver.find_element_by_name("new_images[]").send_keys(os.path.abspath("f141f44c35714b934f3aa8748a78bef5.JPG"))
+    driver.find_element_by_name("date_valid_from").send_keys(datetime.strftime(fake.past_date(), "%d.%m.%Y"))
+    driver.find_element_by_name("date_valid_to").send_keys(datetime.strftime(fake.future_date(), "%d.%m.%Y"))
     time.sleep(1)
 
     driver.find_element_by_xpath("//a[contains(@href, '#tab-information')]//..").click()
