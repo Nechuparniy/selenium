@@ -20,11 +20,11 @@ def check_exists_by_name(driver, name):
     return len(driver.find_elements_by_name(name)) > 0
 
 
-def test_task12(driver):
+def test_task13(driver):
     wait = WebDriverWait(driver, 10)
     driver.get("http://localhost/litecart")
     for x in range(3):
-        driver.find_element_by_css_selector(".listing-wrapper li.product").click()
+        driver.find_element_by_css_selector(".listing-wrapper li.prosdduct").click()
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "h1.title")))
         if check_exists_by_name(driver, "options[Size]"):
             driver.find_element_by_name("options[Size]").click()

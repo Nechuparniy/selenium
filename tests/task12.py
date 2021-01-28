@@ -33,7 +33,7 @@ def test_task12(driver):
     driver.find_element_by_name("code").send_keys(fake.pyint())
     driver.find_element_by_name("quantity").clear()
     driver.find_element_by_name("quantity").send_keys(fake.pyint())
-    driver.find_element_by_name("new_images[]").send_keys(os.path.abspath("f141f44c35714b934f3aa8748a78bef5.JPG"))
+    driver.find_element_by_name("new_images[]").send_keys(os.path.abspath("../f141f44c35714b934f3aa8748a78bef5.JPG"))
     driver.find_element_by_name("date_valid_from").send_keys(datetime.strftime(fake.past_date(), "%d.%m.%Y"))
     driver.find_element_by_name("date_valid_to").send_keys(datetime.strftime(fake.future_date(), "%d.%m.%Y"))
     time.sleep(1)
